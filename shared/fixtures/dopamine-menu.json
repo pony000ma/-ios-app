@@ -725,6 +725,566 @@
           ]
         }
       ]
+    },
+    {
+      "id": "honey-crunch-chicken",
+      "name": "蜂蜜脆鸡补给站",
+      "category": "炸鸡",
+      "rating": 4.7,
+      "distanceKm": 1.6,
+      "deliveryFee": 4,
+      "minimumOrder": 24,
+      "etaMinutes": 26,
+      "tags": ["蜂蜜亮面", "大块鸡腿", "酥皮很脆"],
+      "imageUrl": "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "crunch",
+          "title": "酥皮和酱汁都很会发光",
+          "items": [
+            {
+              "id": "honey-garlic-wings",
+              "name": "蜂蜜蒜香鸡翅",
+              "description": "鸡翅表面刷到琥珀色，蒜香和蜂蜜甜味一起挂在脆皮上。",
+              "price": 36,
+              "calories": 680,
+              "heat": 94,
+              "imageUrl": "https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=900&q=90",
+              "tags": ["蜂蜜", "蒜香"]
+            },
+            {
+              "id": "spicy-boneless-bites",
+              "name": "香辣无骨鸡块桶",
+              "description": "每一块都裹着细碎酥壳，辣粉落在边缘，适合一口接一口想象。",
+              "price": 32,
+              "calories": 720,
+              "heat": 91,
+              "imageUrl": "https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=900&q=90",
+              "tags": ["无骨", "香辣"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charcoal-skewer-night",
+      "name": "炭火肉串夜航",
+      "category": "烧烤",
+      "rating": 4.8,
+      "distanceKm": 2.8,
+      "deliveryFee": 5,
+      "minimumOrder": 35,
+      "etaMinutes": 37,
+      "tags": ["焦香边缘", "撒料厚", "肉汁明显"],
+      "imageUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "charcoal",
+          "title": "炭火味先从图片里出来",
+          "items": [
+            {
+              "id": "charcoal-beef-skewers",
+              "name": "炭火牛肉小串 x12",
+              "description": "牛肉边缘烤出焦点，孜然和辣椒粉铺得很满，看起来热气十足。",
+              "price": 52,
+              "calories": 760,
+              "heat": 96,
+              "imageUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=90",
+              "tags": ["牛肉", "炭火"]
+            },
+            {
+              "id": "butter-corn-ribs",
+              "name": "黄油玉米肋排",
+              "description": "肋排刷着甜咸酱汁，玉米粒发亮，黄油香气很适合深夜。",
+              "price": 48,
+              "calories": 820,
+              "heat": 89,
+              "imageUrl": "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=900&q=90",
+              "tags": ["肋排", "黄油"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "berry-milkcap-studio",
+      "name": "莓果奶盖工作室",
+      "category": "奶茶",
+      "rating": 4.9,
+      "distanceKm": 0.9,
+      "deliveryFee": 2,
+      "minimumOrder": 20,
+      "etaMinutes": 21,
+      "tags": ["厚奶盖", "莓果爆浆", "杯壁很好看"],
+      "imageUrl": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "milkcap",
+          "title": "奶盖厚到像甜品",
+          "items": [
+            {
+              "id": "strawberry-cheese-milk-tea",
+              "name": "草莓芝士奶盖茶",
+              "description": "草莓果肉沉在杯底，芝士奶盖铺得厚厚一层，颜色粉得很直接。",
+              "price": 27,
+              "calories": 480,
+              "heat": 98,
+              "imageUrl": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=90",
+              "tags": ["草莓", "芝士奶盖"]
+            },
+            {
+              "id": "taro-boba-milk",
+              "name": "芋泥啵啵鲜奶",
+              "description": "芋泥挂在杯壁上，啵啵和鲜奶分层柔和，看起来又糯又香。",
+              "price": 25,
+              "calories": 510,
+              "heat": 93,
+              "imageUrl": "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=900&q=90",
+              "tags": ["芋泥", "啵啵"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cold-brew-weekend",
+      "name": "冰拿铁清醒局",
+      "category": "咖啡",
+      "rating": 4.7,
+      "distanceKm": 1.3,
+      "deliveryFee": 4,
+      "minimumOrder": 24,
+      "etaMinutes": 29,
+      "tags": ["冰块清透", "奶咖分层", "拉花稳定"],
+      "imageUrl": "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "iced-coffee",
+          "title": "咖啡因也可以很好看",
+          "items": [
+            {
+              "id": "brown-sugar-iced-latte",
+              "name": "黑糖冰拿铁",
+              "description": "黑糖糖浆贴着杯底，冰块和奶咖分层清晰，搅开时很有仪式感。",
+              "price": 31,
+              "calories": 280,
+              "heat": 86,
+              "imageUrl": "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=90",
+              "tags": ["黑糖", "冰拿铁"]
+            },
+            {
+              "id": "cream-top-americano",
+              "name": "奶油顶冰美式",
+              "description": "深色咖啡托住一层轻奶油，苦味和甜香在视觉上已经平衡好。",
+              "price": 28,
+              "calories": 210,
+              "heat": 82,
+              "imageUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=90",
+              "tags": ["奶油顶", "冰美式"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cream-window-dessert",
+      "name": "奶油糖霜橱窗",
+      "category": "甜品",
+      "rating": 4.9,
+      "distanceKm": 1.7,
+      "deliveryFee": 4,
+      "minimumOrder": 30,
+      "etaMinutes": 31,
+      "tags": ["糖霜闪光", "莓果堆满", "勺感很软"],
+      "imageUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "soft-dessert",
+          "title": "甜度和颜色都很饱满",
+          "items": [
+            {
+              "id": "berry-cream-cup",
+              "name": "莓果奶油杯",
+              "description": "蓝莓、草莓和奶油挤得很满，果汁把白奶油染出一点粉色。",
+              "price": 29,
+              "calories": 420,
+              "heat": 96,
+              "imageUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=90",
+              "tags": ["莓果", "奶油"]
+            },
+            {
+              "id": "caramel-pudding-glass",
+              "name": "焦糖布丁玻璃杯",
+              "description": "焦糖层亮得像琥珀，布丁体细腻晃动，入口想象里很顺滑。",
+              "price": 24,
+              "calories": 360,
+              "heat": 90,
+              "imageUrl": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?auto=format&fit=crop&w=900&q=90",
+              "tags": ["焦糖", "布丁"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tropical-juice-stand",
+      "name": "热带果切冰站",
+      "category": "果汁",
+      "rating": 4.8,
+      "distanceKm": 1.0,
+      "deliveryFee": 2,
+      "minimumOrder": 18,
+      "etaMinutes": 20,
+      "tags": ["果肉超多", "颜色高饱和", "冰雾杯壁"],
+      "imageUrl": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "tropical",
+          "title": "像把水果摊装进杯子",
+          "items": [
+            {
+              "id": "mango-pomelo-blast",
+              "name": "杨枝甘露冰爆杯",
+              "description": "芒果泥浓到挂杯，西柚粒和椰乳层层叠住，颜色金黄得很满足。",
+              "price": 29,
+              "calories": 390,
+              "heat": 99,
+              "imageUrl": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=90",
+              "tags": ["芒果", "西柚"]
+            },
+            {
+              "id": "kiwi-pineapple-ice",
+              "name": "奇异果凤梨冰茶",
+              "description": "绿色奇异果和黄凤梨在杯里撞色，酸甜明亮，冰块非常清透。",
+              "price": 23,
+              "calories": 220,
+              "heat": 91,
+              "imageUrl": "https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=900&q=90",
+              "tags": ["奇异果", "凤梨"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slice-planet-cake",
+      "name": "切块星球蛋糕店",
+      "category": "蛋糕",
+      "rating": 4.8,
+      "distanceKm": 2.0,
+      "deliveryFee": 5,
+      "minimumOrder": 34,
+      "etaMinutes": 34,
+      "tags": ["切面整齐", "奶油厚", "巧克力浓"],
+      "imageUrl": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "slices",
+          "title": "每一刀都切中馋意",
+          "items": [
+            {
+              "id": "dark-chocolate-layer",
+              "name": "黑巧四层蛋糕",
+              "description": "巧克力奶油夹在深色蛋糕胚之间，切面厚实，微苦香气很浓。",
+              "price": 42,
+              "calories": 620,
+              "heat": 97,
+              "imageUrl": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=90",
+              "tags": ["黑巧", "四层"]
+            },
+            {
+              "id": "lemon-cream-tart",
+              "name": "柠檬奶油塔",
+              "description": "塔壳金黄酥脆，柠檬奶油亮得像镜面，酸甜感非常清楚。",
+              "price": 32,
+              "calories": 410,
+              "heat": 88,
+              "imageUrl": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=90",
+              "tags": ["柠檬", "奶油塔"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "berry-yogurt-cloud",
+      "name": "莓果酸奶云",
+      "category": "酸奶",
+      "rating": 4.8,
+      "distanceKm": 1.4,
+      "deliveryFee": 3,
+      "minimumOrder": 20,
+      "etaMinutes": 23,
+      "tags": ["酸奶浓厚", "果酱旋涡", "麦片脆"],
+      "imageUrl": "https://images.unsplash.com/photo-1494597564530-871f2b93ac55?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "cloud",
+          "title": "清爽但仍然很诱人",
+          "items": [
+            {
+              "id": "raspberry-granola-yogurt",
+              "name": "树莓麦片酸奶杯",
+              "description": "树莓酱旋进浓酸奶，麦片颗粒铺满表面，酸甜和脆感都很明显。",
+              "price": 28,
+              "calories": 340,
+              "heat": 88,
+              "imageUrl": "https://images.unsplash.com/photo-1494597564530-871f2b93ac55?auto=format&fit=crop&w=900&q=90",
+              "tags": ["树莓", "麦片"]
+            },
+            {
+              "id": "coconut-mango-yogurt",
+              "name": "椰椰芒果酸奶杯",
+              "description": "芒果块厚厚铺在酸奶上，椰子片像薄雪，整体清亮又香甜。",
+              "price": 30,
+              "calories": 370,
+              "heat": 90,
+              "imageUrl": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=900&q=90",
+              "tags": ["椰子", "芒果"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "butter-burger-garage",
+      "name": "黄油汉堡车库",
+      "category": "汉堡",
+      "rating": 4.7,
+      "distanceKm": 1.9,
+      "deliveryFee": 4,
+      "minimumOrder": 28,
+      "etaMinutes": 30,
+      "tags": ["黄油面包", "肉汁厚", "芝士融化"],
+      "imageUrl": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "garage-burgers",
+          "title": "面包和肉汁都很满",
+          "items": [
+            {
+              "id": "butter-beef-burger",
+              "name": "黄油牛肉芝士堡",
+              "description": "面包表面泛着黄油光，牛肉饼厚实，芝士从边缘慢慢垂下来。",
+              "price": 46,
+              "calories": 880,
+              "heat": 94,
+              "imageUrl": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=90",
+              "tags": ["黄油", "牛肉"]
+            },
+            {
+              "id": "bacon-egg-burger",
+              "name": "培根溏心蛋汉堡",
+              "description": "培根边缘焦脆，溏心蛋切开金黄流动，整体看起来非常扎实。",
+              "price": 42,
+              "calories": 820,
+              "heat": 90,
+              "imageUrl": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=90",
+              "tags": ["培根", "溏心蛋"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sesame-mala-kitchen",
+      "name": "芝麻红汤小锅",
+      "category": "麻辣烫",
+      "rating": 4.7,
+      "distanceKm": 2.2,
+      "deliveryFee": 4,
+      "minimumOrder": 24,
+      "etaMinutes": 31,
+      "tags": ["麻酱很浓", "汤色红亮", "配菜很满"],
+      "imageUrl": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "sesame-mala",
+          "title": "汤底浓得很有画面",
+          "items": [
+            {
+              "id": "sesame-beef-mala",
+              "name": "麻酱肥牛小锅",
+              "description": "麻酱在红汤里化开，肥牛和豆皮堆得很满，热气看起来很香。",
+              "price": 35,
+              "calories": 700,
+              "heat": 92,
+              "imageUrl": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=90",
+              "tags": ["麻酱", "肥牛"]
+            },
+            {
+              "id": "spicy-potato-noodle",
+              "name": "土豆粉麻辣拌",
+              "description": "土豆粉裹满红油和芝麻酱，花生碎贴在表面，软糯感很强。",
+              "price": 28,
+              "calories": 590,
+              "heat": 87,
+              "imageUrl": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=900&q=90",
+              "tags": ["土豆粉", "红油"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cheese-wheel-pizza",
+      "name": "厚芝士圆盘社",
+      "category": "披萨",
+      "rating": 4.7,
+      "distanceKm": 2.4,
+      "deliveryFee": 6,
+      "minimumOrder": 42,
+      "etaMinutes": 36,
+      "tags": ["厚芝士", "烤边焦香", "切片满足"],
+      "imageUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "wheel",
+          "title": "一整张圆形满足",
+          "items": [
+            {
+              "id": "four-cheese-pizza",
+              "name": "四重芝士披萨",
+              "description": "芝士烤出金色小泡，切开时能想象到拉丝，奶香很厚。",
+              "price": 62,
+              "calories": 960,
+              "heat": 94,
+              "imageUrl": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=90",
+              "tags": ["四重芝士", "拉丝"]
+            },
+            {
+              "id": "pineapple-ham-pizza",
+              "name": "菠萝火腿披萨",
+              "description": "菠萝块亮晶晶地嵌在芝士里，火腿边缘微焦，甜咸感很清楚。",
+              "price": 54,
+              "calories": 820,
+              "heat": 85,
+              "imageUrl": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=90",
+              "tags": ["菠萝", "火腿"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tomato-noodle-supply",
+      "name": "番茄汤面补给",
+      "category": "粉面",
+      "rating": 4.6,
+      "distanceKm": 1.6,
+      "deliveryFee": 3,
+      "minimumOrder": 22,
+      "etaMinutes": 25,
+      "tags": ["汤色明亮", "浇头厚", "热气真实"],
+      "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "tomato-noodles",
+          "title": "酸甜汤底很会开胃",
+          "items": [
+            {
+              "id": "tomato-beef-noodle",
+              "name": "番茄牛腩面",
+              "description": "番茄汤红亮浓稠，牛腩块压在面上，酸甜香气很容易被想象出来。",
+              "price": 36,
+              "calories": 720,
+              "heat": 90,
+              "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=90",
+              "tags": ["番茄", "牛腩"]
+            },
+            {
+              "id": "sour-spicy-rice-noodle",
+              "name": "酸辣肥牛米粉",
+              "description": "米粉浸在红亮汤里，肥牛和香菜铺满碗口，酸辣感很清醒。",
+              "price": 32,
+              "calories": 660,
+              "heat": 88,
+              "imageUrl": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=900&q=90",
+              "tags": ["酸辣", "肥牛"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nori-roll-market",
+      "name": "海苔卷物铺",
+      "category": "寿司",
+      "rating": 4.7,
+      "distanceKm": 2.6,
+      "deliveryFee": 5,
+      "minimumOrder": 36,
+      "etaMinutes": 34,
+      "tags": ["卷物整齐", "鱼籽闪亮", "冷食清爽"],
+      "imageUrl": "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "rolls",
+          "title": "摆得整齐就很满足",
+          "items": [
+            {
+              "id": "avocado-salmon-roll",
+              "name": "牛油果三文鱼卷",
+              "description": "牛油果浅绿、三文鱼橙粉，切面整齐，米粒看起来很饱满。",
+              "price": 46,
+              "calories": 560,
+              "heat": 84,
+              "imageUrl": "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=900&q=90",
+              "tags": ["牛油果", "三文鱼"]
+            },
+            {
+              "id": "crab-roe-roll",
+              "name": "蟹籽沙拉卷",
+              "description": "橙色蟹籽铺在卷物外层，沙拉酱微微发亮，口感想象里很弹。",
+              "price": 38,
+              "calories": 510,
+              "heat": 80,
+              "imageUrl": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=90",
+              "tags": ["蟹籽", "沙拉"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spice-dust-fried-cart",
+      "name": "酥脆撒粉小车",
+      "category": "炸串",
+      "rating": 4.7,
+      "distanceKm": 1.2,
+      "deliveryFee": 3,
+      "minimumOrder": 18,
+      "etaMinutes": 22,
+      "tags": ["椒盐厚", "外壳起泡", "小吃快乐"],
+      "imageUrl": "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=1200&q=90",
+      "menuSections": [
+        {
+          "id": "fried-cart",
+          "title": "小吃摊的高光时刻",
+          "items": [
+            {
+              "id": "fried-lotus-root",
+              "name": "椒盐炸藕夹",
+              "description": "藕夹外层金黄，椒盐落在孔洞边缘，咬感看起来又脆又香。",
+              "price": 18,
+              "calories": 430,
+              "heat": 86,
+              "imageUrl": "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=900&q=90",
+              "tags": ["藕夹", "椒盐"]
+            },
+            {
+              "id": "fried-cheese-stick",
+              "name": "拉丝芝士棒",
+              "description": "外壳炸到浅金色，里面的芝士像要拉出来，甜辣酱在旁边很亮。",
+              "price": 20,
+              "calories": 460,
+              "heat": 92,
+              "imageUrl": "https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=900&q=90",
+              "tags": ["芝士", "拉丝"]
+            }
+          ]
+        }
+      ]
     }
   ],
   "coupons": [

@@ -15,6 +15,15 @@ describe('fixture content', () => {
     expect(validateFixture(data)).toEqual([]);
     expect(data.statusEvents.map((event) => event.status)).not.toContain('delivered');
   });
+
+  it('keeps every category with multiple restaurant choices', () => {
+    const byCategory = data.restaurants.reduce<Record<string, number>>((acc, restaurant) => {
+      acc[restaurant.category] = (acc[restaurant.category] ?? 0) + 1;
+      return acc;
+    }, {});
+
+    expect(Object.entries(byCategory).filter(([, count]) => count < 2)).toEqual([]);
+  });
 });
 
 describe('cart and totals', () => {
@@ -57,4 +66,3 @@ describe('order state machine', () => {
     expect(JSON.stringify(order)).not.toMatch(/payment|pay|card|paid/i);
   });
 });
-
