@@ -19,6 +19,7 @@
 		AB0000000000000000000110 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000210 /* HistoryView.swift */; };
 		AB0000000000000000000111 /* dopamine-menu.json in Resources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000211 /* dopamine-menu.json */; };
 		AB0000000000000000000112 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000213 /* ProfileView.swift */; };
+		AB0000000000000000000113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000214 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		AB0000000000000000000211 /* dopamine-menu.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "dopamine-menu.json"; path = "../shared/fixtures/dopamine-menu.json"; sourceTree = SOURCE_ROOT; };
 		AB0000000000000000000212 /* DopamineDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DopamineDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0000000000000000000213 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AB0000000000000000000214 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		AB0000000000000000000404 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AB0000000000000000000214 /* Assets.xcassets */,
 				AB0000000000000000000211 /* dopamine-menu.json */,
 			);
 			path = Resources;
@@ -157,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB0000000000000000000113 /* Assets.xcassets in Resources */,
 				AB0000000000000000000111 /* dopamine-menu.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -338,6 +343,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
