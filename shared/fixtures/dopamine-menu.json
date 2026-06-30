@@ -1,0 +1,298 @@
+{
+  "restaurants": [
+    {
+      "id": "midnight-crispy-lab",
+      "name": "凌晨脆皮研究所",
+      "category": "炸鸡",
+      "rating": 4.8,
+      "distanceKm": 1.2,
+      "deliveryFee": 3,
+      "minimumOrder": 20,
+      "etaMinutes": 28,
+      "tags": ["深夜热卖", "脆皮稳定", "永远快到"],
+      "imageUrl": "https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=1200&q=80",
+      "menuSections": [
+        {
+          "id": "fried",
+          "title": "差点拥有炸物",
+          "items": [
+            {
+              "id": "golden-chicken",
+              "name": "金黄脆皮半只鸡",
+              "description": "外皮会发出你今晚本来想听见的声音。",
+              "price": 42,
+              "calories": 980,
+              "heat": 98,
+              "imageUrl": "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=900&q=80",
+              "tags": ["爆汁", "罪恶感友好"]
+            },
+            {
+              "id": "cheese-fries",
+              "name": "熔岩芝士薯条",
+              "description": "适合认真犹豫 12 分钟后又删掉。",
+              "price": 24,
+              "calories": 620,
+              "heat": 85,
+              "imageUrl": "https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=900&q=80",
+              "tags": ["拉丝", "满减搭子"]
+            }
+          ]
+        },
+        {
+          "id": "drinks",
+          "title": "配一杯就更像真的",
+          "items": [
+            {
+              "id": "cold-cola",
+              "name": "冰到灵魂安静的可乐",
+              "description": "不会真的送来，所以冰块永远不会化。",
+              "price": 9,
+              "calories": 150,
+              "heat": 74,
+              "imageUrl": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=900&q=80",
+              "tags": ["冰镇", "永不稀释"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "almost-bbq",
+      "name": "差一点烧烤局",
+      "category": "烧烤",
+      "rating": 4.7,
+      "distanceKm": 2.4,
+      "deliveryFee": 5,
+      "minimumOrder": 35,
+      "etaMinutes": 36,
+      "tags": ["朋友已读不回", "香味脑补", "夜宵"],
+      "imageUrl": "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=1200&q=80",
+      "menuSections": [
+        {
+          "id": "skewers",
+          "title": "越刷越想点",
+          "items": [
+            {
+              "id": "lamb-skewers",
+              "name": "孜然羊肉串 x10",
+              "description": "每一串都在地图上绕路。",
+              "price": 58,
+              "calories": 720,
+              "heat": 96,
+              "imageUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80",
+              "tags": ["孜然", "越等越香"]
+            },
+            {
+              "id": "garlic-eggplant",
+              "name": "蒜蓉烤茄子",
+              "description": "一种把明天的社交也一起加进购物车的选择。",
+              "price": 19,
+              "calories": 360,
+              "heat": 88,
+              "imageUrl": "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=900&q=80",
+              "tags": ["蒜香", "深夜理性消失"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bubble-loop",
+      "name": "奶茶循环有限公司",
+      "category": "奶茶",
+      "rating": 4.9,
+      "distanceKm": 0.8,
+      "deliveryFee": 2,
+      "minimumOrder": 18,
+      "etaMinutes": 22,
+      "tags": ["半糖也上头", "加料自由", "情绪续杯"],
+      "imageUrl": "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=1200&q=80",
+      "menuSections": [
+        {
+          "id": "milk-tea",
+          "title": "快乐可以先不付款",
+          "items": [
+            {
+              "id": "brown-sugar-boba",
+              "name": "黑糖珍珠鲜奶",
+              "description": "珍珠在杯底等你，钱包在现实里感谢你。",
+              "price": 23,
+              "calories": 520,
+              "heat": 99,
+              "imageUrl": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80",
+              "tags": ["黑糖", "珍珠加满"]
+            },
+            {
+              "id": "jasmine-light",
+              "name": "茉莉轻乳茶",
+              "description": "看起来很克制，实际上也是多巴胺。",
+              "price": 19,
+              "calories": 310,
+              "heat": 81,
+              "imageUrl": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=80",
+              "tags": ["清爽", "心理低卡"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "saturday-coffee",
+      "name": "周六下午咖啡馆",
+      "category": "咖啡",
+      "rating": 4.6,
+      "distanceKm": 1.9,
+      "deliveryFee": 4,
+      "minimumOrder": 25,
+      "etaMinutes": 31,
+      "tags": ["认真生活错觉", "拉花脑补", "咖啡因"],
+      "imageUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80",
+      "menuSections": [
+        {
+          "id": "coffee",
+          "title": "慢一点才像周末",
+          "items": [
+            {
+              "id": "oat-latte",
+              "name": "燕麦拿铁",
+              "description": "适合在三家店之间认真比较四十分钟。",
+              "price": 32,
+              "calories": 240,
+              "heat": 86,
+              "imageUrl": "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=900&q=80",
+              "tags": ["燕麦", "认真挑选"]
+            },
+            {
+              "id": "dirty-coffee",
+              "name": "冰博克 Dirty",
+              "description": "喝不到也没关系，你已经拥有了想喝的那部分。",
+              "price": 36,
+              "calories": 260,
+              "heat": 79,
+              "imageUrl": "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80",
+              "tags": ["冰火", "差一点拥有"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sweet-almost",
+      "name": "甜品未遂事务所",
+      "category": "甜品",
+      "rating": 4.8,
+      "distanceKm": 2.1,
+      "deliveryFee": 4,
+      "minimumOrder": 29,
+      "etaMinutes": 34,
+      "tags": ["情绪蛋糕", "可爱但没来", "分享卡片"],
+      "imageUrl": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1200&q=80",
+      "menuSections": [
+        {
+          "id": "dessert",
+          "title": "今晚先看看",
+          "items": [
+            {
+              "id": "strawberry-cake",
+              "name": "草莓云朵蛋糕",
+              "description": "会让购物车看起来像一段温柔关系。",
+              "price": 39,
+              "calories": 480,
+              "heat": 91,
+              "imageUrl": "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=900&q=80",
+              "tags": ["草莓", "云朵"]
+            },
+            {
+              "id": "tiramisu-cup",
+              "name": "提拉米苏杯",
+              "description": "咖啡、奶油、虚拟自控力。",
+              "price": 28,
+              "calories": 430,
+              "heat": 84,
+              "imageUrl": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=900&q=80",
+              "tags": ["可可", "复盘友好"]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coupons": [
+    {
+      "id": "almost-8",
+      "title": "差点下单券",
+      "threshold": 38,
+      "discount": 8,
+      "copy": "满 38 减 8，减的是冲动，不是快乐。"
+    },
+    {
+      "id": "wallet-15",
+      "title": "钱包深呼吸券",
+      "threshold": 68,
+      "discount": 15,
+      "copy": "满 68 减 15，钱包今晚先睡。"
+    }
+  ],
+  "addresses": [
+    {
+      "id": "sofa",
+      "label": "沙发角落 3 号",
+      "detail": "不是真实地址，只是一个今晚很懂你的地方。"
+    },
+    {
+      "id": "desk",
+      "label": "电脑前临时据点",
+      "detail": "屏幕发光，胃口也发光。"
+    },
+    {
+      "id": "future",
+      "label": "明天更清醒的我",
+      "detail": "收件人会在早上感谢你。"
+    }
+  ],
+  "statusEvents": [
+    {
+      "status": "placed",
+      "unlockSecond": 0,
+      "title": "商家已接到你的想象订单",
+      "detail": "厨房正在认真处理一份不会产生账单的期待。"
+    },
+    {
+      "status": "preparing",
+      "unlockSecond": 15,
+      "title": "正在备餐",
+      "detail": "香味正在你的脑内排队出锅。"
+    },
+    {
+      "status": "riderAssigned",
+      "unlockSecond": 35,
+      "title": "虚拟骑手已接单",
+      "detail": "他会移动，但不会打电话让你下楼。"
+    },
+    {
+      "status": "nearby",
+      "unlockSecond": 55,
+      "title": "骑手已在附近",
+      "detail": "附近是一个很宽容的概念。"
+    },
+    {
+      "status": "almostThere",
+      "unlockSecond": 75,
+      "title": "马上就到",
+      "detail": "你已经拥有了最刺激的那一部分。"
+    },
+    {
+      "status": "stillAlmostThere",
+      "unlockSecond": 84,
+      "title": "预计 8 分钟后仍然预计 8 分钟",
+      "detail": "期待正在无限续杯，现实成本仍为 0。"
+    },
+    {
+      "status": "reflectionReady",
+      "unlockSecond": 90,
+      "title": "可以结束期待了",
+      "detail": "如果馋已经过去，今晚先放过钱包。"
+    }
+  ]
+}
+

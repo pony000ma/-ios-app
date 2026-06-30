@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+web/dist/
+web/playwright-report/
+web/test-results/
+ios/DerivedData/
+*.xcuserstate
+*.xcuserdata/
+*.moved-aside
+build/
+

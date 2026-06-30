@@ -1,0 +1,12 @@
+{
+  "name": "dopamine-delivery",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "web:dev": "npm --prefix web run dev",
+    "web:build": "npm --prefix web run build",
+    "web:test": "npm --prefix web test",
+    "web:e2e": "npm --prefix web run test:e2e",
+    "ios:build": "xcodebuild -project ios/DopamineDelivery.xcodeproj -scheme DopamineDelivery -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO"
+  }
+}
