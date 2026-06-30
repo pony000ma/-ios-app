@@ -2,6 +2,11 @@ import { expect, test } from '@playwright/test';
 
 test('runs the dopamine delivery loop from browsing to reflection', async ({ page }) => {
   await page.goto('/?fast=1');
+  await page.getByTestId('profile-tab').click();
+  await page.getByPlaceholder('例如：今晚不点也很完整').fill('钱包守夜人');
+  await page.getByTestId('register-profile').click();
+
+  await page.getByRole('button', { name: /首页/ }).click();
   await page.getByTestId('restaurant-midnight-crispy-lab').click();
   await page.getByTestId('add-golden-chicken').click();
   await page.getByTestId('cart-tab').click();

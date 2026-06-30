@@ -3,6 +3,8 @@ import type {
   CartItem,
   CartLine,
   CartTotals,
+  DopamineColorId,
+  DopaminePalette,
   FixtureData,
   MenuItem,
   OrderStatus,
@@ -10,6 +12,7 @@ import type {
   ReflectionSummary,
   Restaurant,
   SimulatedOrder,
+  UserProfile,
   VirtualAddress,
   VirtualCoupon,
 } from './types';
@@ -17,6 +20,66 @@ import type {
 export const data = fixture as FixtureData;
 
 const completionStatuses = new Set<string>(['delivered', 'paid', 'completed']);
+
+export const suggestedUsernames = [
+  '钱包守夜人',
+  '奶茶撤退冠军',
+  '炸鸡冷静观察员',
+  '深夜下单刹车片',
+  '余额保卫处处长',
+];
+
+export const rechargeAmounts = [66, 128, 288, 520];
+
+export const dopaminePalettes: DopaminePalette[] = [
+  { id: 'pink', label: '多巴胺粉', color: '#ff4fa3', soft: '#fff0f7', contrast: '#5c1234' },
+  { id: 'green', label: '多巴胺绿', color: '#35d06f', soft: '#edfff3', contrast: '#0f4a27' },
+  { id: 'purple', label: '多巴胺紫', color: '#9b5cff', soft: '#f6f0ff', contrast: '#321266' },
+  { id: 'orange', label: '多巴胺橙', color: '#ff8a2a', soft: '#fff3e8', contrast: '#66310a' },
+];
+
+export function paletteFor(id: DopamineColorId): DopaminePalette {
+  return dopaminePalettes.find((palette) => palette.id === id) ?? dopaminePalettes[1];
+}
+
+export function defaultUserProfile(): UserProfile {
+  return {
+    isRegistered: false,
+    username: '',
+    balance: 0,
+    backgroundColor: 'pink',
+    iconColor: 'green',
+    fontColor: 'purple',
+  };
+}
+
+export function registerProfile(profile: UserProfile, username: string, initialAmount: number): UserProfile {
+  const cleanName = username.trim() || suggestedUsernames[0];
+  return {
+    ...profile,
+    isRegistered: true,
+    username: cleanName,
+    balance: Math.max(0, profile.balance + initialAmount),
+  };
+}
+
+export function rechargeProfile(profile: UserProfile, amount: number): UserProfile {
+  return {
+    ...profile,
+    balance: Math.max(0, profile.balance + amount),
+  };
+}
+
+export function chargeProfile(profile: UserProfile, amount: number): { profile: UserProfile; ok: boolean } {
+  if (!profile.isRegistered || profile.balance < amount) {
+    return { profile, ok: false };
+  }
+
+  return {
+    profile: { ...profile, balance: Math.max(0, profile.balance - amount) },
+    ok: true,
+  };
+}
 
 export function allMenuItems(restaurant: Restaurant): MenuItem[] {
   return restaurant.menuSections.flatMap((section) => section.items);
@@ -172,4 +235,3 @@ export function validateFixture(input: FixtureData): string[] {
   if (!input.addresses.every((address) => address.label && address.detail)) issues.push('address:invalid');
   return issues;
 }
-

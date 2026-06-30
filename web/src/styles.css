@@ -37,6 +37,21 @@ button:disabled {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
   padding: 22px 0 96px;
+  color: var(--text-color, #221c18);
+}
+
+.app-shell::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--app-bg, #fff8ef) 94%, white), rgba(255, 255, 255, 0.78)),
+    var(--app-bg, #fff8ef);
+}
+
+.app-shell svg {
+  color: var(--accent, #1f7a5c);
 }
 
 .topbar,
@@ -52,6 +67,14 @@ button:disabled {
 .topbar {
   justify-content: space-between;
   gap: 16px;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
 }
 
 .eyebrow {
@@ -125,7 +148,7 @@ h3 {
 
 .nav-tabs button.active {
   color: #111;
-  background: #f5c253;
+  background: var(--accent, #f5c253);
   box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.14);
 }
 
@@ -156,6 +179,12 @@ h3 {
   max-width: 42vw;
 }
 
+.wallet-pill,
+.address-pill {
+  min-width: 0;
+}
+
+.wallet-pill span,
 .address-pill span {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -226,7 +255,7 @@ h3 {
 
 .category-row button.active {
   color: #fff;
-  background: #1f7a5c;
+  background: var(--accent, #1f7a5c);
 }
 
 .restaurant-list {
@@ -371,7 +400,7 @@ h3 {
   height: 42px;
   place-items: center;
   color: #fff;
-  background: #d8492f;
+  background: var(--accent, #d8492f);
   font-weight: 900;
 }
 
@@ -475,6 +504,7 @@ h3 {
 }
 
 .coupon-box,
+.wallet-box,
 .eta-card {
   display: flex;
   gap: 12px;
@@ -483,6 +513,41 @@ h3 {
   background: #fff4d2;
   border: 1px solid #ead08a;
   border-radius: 8px;
+}
+
+.wallet-box {
+  margin-top: 12px;
+  background: var(--accent-soft, #edf7ef);
+  border-color: color-mix(in srgb, var(--accent, #1f7a5c) 40%, #fff);
+}
+
+.wallet-box.needs-recharge {
+  background: #fff0f3;
+  border-color: #ff9bb8;
+}
+
+.wallet-box small {
+  display: block;
+  margin-top: 6px;
+  color: #a33150;
+  font-weight: 800;
+}
+
+.mini-recharge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mini-recharge-row button {
+  min-height: 32px;
+  padding: 0 10px;
+  color: var(--text-color, #221c18);
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--accent, #1f7a5c) 45%, #fff);
+  border-radius: 8px;
+  font-weight: 900;
 }
 
 .totals {
@@ -520,7 +585,7 @@ h3 {
   min-height: 50px;
   padding: 0 16px;
   color: #fff;
-  background: #1f7a5c;
+  background: var(--accent, #1f7a5c);
   font-weight: 900;
 }
 
@@ -699,6 +764,200 @@ h3 {
   font-size: 1.3rem;
 }
 
+.profile-layout {
+  display: grid;
+  gap: 16px;
+}
+
+.profile-hero,
+.settings-card,
+.profile-notice {
+  background: #fff;
+  border: 1px solid #ead8c6;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgba(88, 54, 30, 0.08);
+}
+
+.profile-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: clamp(18px, 4vw, 28px);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent-soft, #edf7ef) 80%, #fff), #fff);
+}
+
+.profile-hero p {
+  max-width: 620px;
+  color: #66564d;
+  line-height: 1.55;
+}
+
+.balance-orb {
+  display: grid;
+  flex: 0 0 auto;
+  width: 164px;
+  min-height: 136px;
+  place-items: center;
+  padding: 16px;
+  text-align: center;
+  background: var(--accent, #1f7a5c);
+  border-radius: 8px;
+  color: #fff;
+}
+
+.balance-orb svg {
+  color: #fff;
+}
+
+.balance-orb span {
+  font-weight: 800;
+}
+
+.balance-orb strong {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.profile-notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--accent-soft, #edf7ef);
+  font-weight: 900;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.settings-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 16px;
+}
+
+.theme-card {
+  grid-column: 1 / -1;
+}
+
+.settings-title {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.settings-title p {
+  margin: 0;
+  color: #6c5a50;
+  line-height: 1.45;
+}
+
+.profile-input {
+  display: grid;
+  gap: 8px;
+  color: #6c5a50;
+  font-weight: 900;
+}
+
+.profile-input input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  color: var(--text-color, #221c18);
+  background: #f8f0e8;
+  border: 1px solid #e4d0be;
+  border-radius: 8px;
+  outline-color: var(--accent, #1f7a5c);
+}
+
+.suggested-names,
+.amount-picker > div,
+.recharge-grid,
+.swatch-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.suggested-names button,
+.amount-picker button,
+.recharge-grid button,
+.swatch-row button {
+  min-height: 38px;
+  padding: 0 12px;
+  color: var(--text-color, #221c18);
+  background: #f6efe8;
+  border: 1px solid #e4d0be;
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+.suggested-names button.selected,
+.amount-picker button.selected,
+.swatch-row button.selected {
+  background: var(--accent, #1f7a5c);
+  border-color: var(--accent, #1f7a5c);
+  color: #fff;
+}
+
+.amount-picker,
+.theme-picker {
+  display: grid;
+  gap: 8px;
+}
+
+.amount-picker > span,
+.theme-picker > span {
+  color: #6c5a50;
+  font-weight: 900;
+}
+
+.recharge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.recharge-grid button {
+  min-height: 52px;
+  background: var(--accent-soft, #edf7ef);
+}
+
+.registered-copy {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  background: var(--accent-soft, #edf7ef);
+  border-radius: 8px;
+}
+
+.registered-copy strong {
+  font-size: 1.25rem;
+}
+
+.registered-copy span {
+  color: #6c5a50;
+}
+
+.swatch-row button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch-row button > span {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
 .empty-state {
   display: grid;
   min-height: 280px;
@@ -741,10 +1000,17 @@ h3 {
 
   .topbar {
     align-items: flex-start;
+    flex-direction: column;
   }
 
+  .topbar-actions {
+    width: 100%;
+  }
+
+  .wallet-pill,
   .address-pill {
-    max-width: 48vw;
+    flex: 1 1 0;
+    max-width: none;
   }
 
   .nav-tabs {
@@ -757,8 +1023,22 @@ h3 {
   .cart-line,
   .cart-layout,
   .tracking-layout,
-  .stats-grid {
+  .stats-grid,
+  .profile-grid {
     grid-template-columns: 1fr;
+  }
+
+  .theme-card {
+    grid-column: auto;
+  }
+
+  .profile-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .balance-orb {
+    width: 100%;
   }
 
   .restaurant-card img,
@@ -789,4 +1069,3 @@ h3 {
     width: 100%;
   }
 }
-

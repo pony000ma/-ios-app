@@ -3,41 +3,57 @@ import {
   BarChart3,
   Bike,
   ChevronLeft,
+  CircleDollarSign,
   Clock3,
   Heart,
   History,
   Home,
   MapPin,
   Minus,
+  Palette,
   Plus,
   ReceiptText,
   Search,
+  Settings,
   ShoppingBag,
   Sparkles,
   Trash2,
   Utensils,
+  UserRound,
+  WalletCards,
+  WandSparkles,
 } from 'lucide-react';
+import type { CSSProperties } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import {
   addToCart,
   calculateCartTotals,
+  chargeProfile,
   createReflection,
   createSimulatedOrder,
   data,
+  defaultUserProfile,
   decrementCart,
+  dopaminePalettes,
+  paletteFor,
+  rechargeAmounts,
+  rechargeProfile,
+  registerProfile,
   removeFromCart,
   resolveCartLines,
   statusForElapsed,
   statusProgress,
+  suggestedUsernames,
   summarizeHistory,
 } from './domain';
-import type { CartItem, ReflectionSummary, Restaurant, SimulatedOrder, VirtualAddress } from './types';
+import type { CartItem, DopamineColorId, ReflectionSummary, Restaurant, SimulatedOrder, UserProfile, VirtualAddress } from './types';
 
-type Page = 'home' | 'cart' | 'tracking' | 'reflection' | 'history';
+type Page = 'home' | 'cart' | 'tracking' | 'reflection' | 'history' | 'profile';
 
 const cartKey = 'dopamine.delivery.cart';
 const addressKey = 'dopamine.delivery.address';
 const historyKey = 'dopamine.delivery.history';
+const profileKey = 'dopamine.delivery.profile';
 const readySeconds = new URLSearchParams(window.location.search).has('fast') ? 3 : 90;
 
 function readStorage<T>(key: string, fallback: T): T {
@@ -66,6 +82,11 @@ export function App() {
   const [activeOrder, setActiveOrder] = useState<SimulatedOrder | null>(null);
   const [reflection, setReflection] = useState<ReflectionSummary | null>(null);
   const [history, setHistory] = useState<ReflectionSummary[]>(() => readStorage(historyKey, []));
+  const [profile, setProfile] = useState<UserProfile>(() => ({
+    ...defaultUserProfile(),
+    ...readStorage<Partial<UserProfile>>(profileKey, {}),
+  }));
+  const [walletNotice, setWalletNotice] = useState('');
 
   const categories = useMemo(() => ['全部', ...Array.from(new Set(data.restaurants.map((item) => item.category)))], []);
   const filteredRestaurants = useMemo(() => {
@@ -83,6 +104,18 @@ export function App() {
   useEffect(() => window.localStorage.setItem(cartKey, JSON.stringify(cart)), [cart]);
   useEffect(() => window.localStorage.setItem(addressKey, JSON.stringify(address.id)), [address]);
   useEffect(() => window.localStorage.setItem(historyKey, JSON.stringify(history)), [history]);
+  useEffect(() => window.localStorage.setItem(profileKey, JSON.stringify(profile)), [profile]);
+
+  const backgroundPalette = paletteFor(profile.backgroundColor);
+  const iconPalette = paletteFor(profile.iconColor);
+  const fontPalette = paletteFor(profile.fontColor);
+  const themeStyle = {
+    '--app-bg': backgroundPalette.soft,
+    '--accent': iconPalette.color,
+    '--accent-soft': iconPalette.soft,
+    '--text-color': fontPalette.contrast,
+    '--theme-border': iconPalette.color,
+  } as CSSProperties;
 
   function addItem(restaurantId: string, menuItemId: string) {
     setCart((current) => addToCart(current, restaurantId, menuItemId));
@@ -90,7 +123,22 @@ export function App() {
 
   function beginExpectation() {
     if (!cart.length) return;
+    if (!profile.isRegistered) {
+      setWalletNotice('先给自己取个能劝住钱包的名字，再开始期待。');
+      setPage('profile');
+      return;
+    }
+
+    const charged = chargeProfile(profile, totals.total);
+    if (!charged.ok) {
+      setWalletNotice(`储值余额还差 ${money(Math.max(0, totals.total - profile.balance))}，先充值再让骑手进入想象。`);
+      setPage('profile');
+      return;
+    }
+
     const order = createSimulatedOrder(cart, address);
+    setProfile(charged.profile);
+    setWalletNotice(`已从情绪储值扣除 ${money(totals.total)}，真实账户依然没有动静。`);
     setActiveOrder(order);
     setReflection(null);
     setPage('tracking');
@@ -113,16 +161,22 @@ export function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" style={themeStyle}>
       <header className="topbar">
         <div>
           <p className="eyebrow">Food Never Comes, but gentler</p>
           <h1>多巴胺外卖</h1>
         </div>
-        <button className="ghost-button address-pill" onClick={() => setPage('cart')} aria-label="打开虚拟地址">
-          <MapPin size={18} />
-          <span>{address.label}</span>
-        </button>
+        <div className="topbar-actions">
+          <button className="ghost-button wallet-pill" onClick={() => setPage('profile')} aria-label="打开我的钱包">
+            <WalletCards size={18} />
+            <span>{profile.isRegistered ? `${profile.username} · ${money(profile.balance)}` : '注册/储值'}</span>
+          </button>
+          <button className="ghost-button address-pill" onClick={() => setPage('cart')} aria-label="打开虚拟地址">
+            <MapPin size={18} />
+            <span>{address.label}</span>
+          </button>
+        </div>
       </header>
 
       <nav className="nav-tabs" aria-label="主导航">
@@ -135,6 +189,9 @@ export function App() {
         </button>
         <button className={page === 'history' ? 'active' : ''} onClick={() => setPage('history')}>
           <History size={18} /> 记录
+        </button>
+        <button className={page === 'profile' ? 'active' : ''} onClick={() => setPage('profile')} data-testid="profile-tab">
+          <Settings size={18} /> 我的
         </button>
       </nav>
 
@@ -165,12 +222,18 @@ export function App() {
             lines={lines}
             totals={totals}
             cart={cart}
+            profile={profile}
+            walletNotice={walletNotice}
             address={address}
             setAddress={setAddress}
             onAdd={addItem}
             onMinus={(restaurantId, menuItemId) => setCart((current) => decrementCart(current, restaurantId, menuItemId))}
             onRemove={(restaurantId, menuItemId) => setCart((current) => removeFromCart(current, restaurantId, menuItemId))}
             onBegin={beginExpectation}
+            onRecharge={(amount) => {
+              setProfile((current) => rechargeProfile(current, amount));
+              setWalletNotice(`已补充 ${money(amount)} 情绪储值，钱包收到了彩色安慰。`);
+            }}
           />
         )}
 
@@ -193,6 +256,17 @@ export function App() {
         )}
 
         {page === 'history' && <HistoryPage history={history} summary={historySummary} />}
+
+        {page === 'profile' && (
+          <ProfilePage
+            profile={profile}
+            notice={walletNotice}
+            setNotice={setWalletNotice}
+            onRegister={(name, amount) => setProfile((current) => registerProfile(current, name, amount))}
+            onRecharge={(amount) => setProfile((current) => rechargeProfile(current, amount))}
+            onThemeChange={(part, color) => setProfile((current) => ({ ...current, [part]: color }))}
+          />
+        )}
       </main>
 
       {page === 'home' && cart.length > 0 && (
@@ -313,17 +387,22 @@ function RestaurantDetail({ restaurant, cart, onBack, onAdd }: {
   );
 }
 
-function CartPage({ lines, totals, cart, address, setAddress, onAdd, onMinus, onRemove, onBegin }: {
+function CartPage({ lines, totals, cart, profile, walletNotice, address, setAddress, onAdd, onMinus, onRemove, onBegin, onRecharge }: {
   lines: ReturnType<typeof resolveCartLines>;
   totals: ReturnType<typeof calculateCartTotals>;
   cart: CartItem[];
+  profile: UserProfile;
+  walletNotice: string;
   address: VirtualAddress;
   setAddress: (address: VirtualAddress) => void;
   onAdd: (restaurantId: string, menuItemId: string) => void;
   onMinus: (restaurantId: string, menuItemId: string) => void;
   onRemove: (restaurantId: string, menuItemId: string) => void;
   onBegin: () => void;
+  onRecharge: (amount: number) => void;
 }) {
+  const canAfford = profile.isRegistered && profile.balance >= totals.total;
+
   return (
     <section className="cart-layout">
       <div className="cart-main">
@@ -384,6 +463,25 @@ function CartPage({ lines, totals, cart, address, setAddress, onAdd, onMinus, on
             <p>{totals.coupon?.copy ?? '满 38 会自动帮你减掉一点冲动。'}</p>
           </div>
         </div>
+        <div className={`wallet-box ${canAfford ? '' : 'needs-recharge'}`}>
+          <WalletCards size={22} />
+          <div>
+            <strong>{profile.isRegistered ? `${profile.username} 的情绪储值` : '还没有注册情绪钱包'}</strong>
+            <p>
+              {profile.isRegistered
+                ? `当前余额 ${money(profile.balance)}，本次将扣除 ${money(totals.total)}。`
+                : '注册后选择一笔预存储值，再开始这次期待。'}
+            </p>
+            {walletNotice ? <small>{walletNotice}</small> : null}
+            {!canAfford && profile.isRegistered ? (
+              <div className="mini-recharge-row">
+                {rechargeAmounts.map((amount) => (
+                  <button key={amount} onClick={() => onRecharge(amount)}>+{money(amount)}</button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
         <dl className="totals">
           <div><dt>商品小计</dt><dd>{money(totals.subtotal)}</dd></div>
           <div><dt>虚拟配送</dt><dd>{money(totals.deliveryFee)}</dd></div>
@@ -391,7 +489,7 @@ function CartPage({ lines, totals, cart, address, setAddress, onAdd, onMinus, on
           <div className="total"><dt>如果真点了</dt><dd>{money(totals.total)}</dd></div>
         </dl>
         <button className="primary-button" onClick={onBegin} disabled={cart.length === 0} data-testid="begin-expectation">
-          <Sparkles size={19} /> 开始期待
+          <Sparkles size={19} /> {profile.isRegistered && !canAfford ? '余额不足，先充值' : '开始期待'}
         </button>
       </aside>
     </section>
@@ -525,3 +623,165 @@ function HistoryPage({ history, summary }: { history: ReflectionSummary[]; summa
   );
 }
 
+function ProfilePage({ profile, notice, setNotice, onRegister, onRecharge, onThemeChange }: {
+  profile: UserProfile;
+  notice: string;
+  setNotice: (notice: string) => void;
+  onRegister: (name: string, amount: number) => void;
+  onRecharge: (amount: number) => void;
+  onThemeChange: (part: 'backgroundColor' | 'iconColor' | 'fontColor', color: DopamineColorId) => void;
+}) {
+  const [draftName, setDraftName] = useState(profile.username);
+  const [selectedName, setSelectedName] = useState(suggestedUsernames[0]);
+  const [selectedAmount, setSelectedAmount] = useState(rechargeAmounts[1]);
+  const displayName = profile.username || selectedName;
+
+  function register() {
+    const name = draftName.trim() || selectedName;
+    onRegister(name, selectedAmount);
+    setNotice(`欢迎 ${name}，已存入 ${money(selectedAmount)} 情绪预算。`);
+  }
+
+  function recharge(amount: number) {
+    onRecharge(amount);
+    setNotice(`已充值 ${money(amount)}，余额又被情绪价值抱了一下。`);
+  }
+
+  return (
+    <section className="profile-layout">
+      <div className="profile-hero">
+        <div>
+          <p className="eyebrow">我的情绪钱包</p>
+          <h2>{profile.isRegistered ? displayName : '先注册一个会劝你的名字'}</h2>
+          <p>{profile.isRegistered ? '每次开始期待都会从这里扣除虚拟储值，余额不足时先充值。' : '自定义用户名，或者拿一个系统准备好的劝慰讽刺名。'}</p>
+        </div>
+        <div className="balance-orb">
+          <WalletCards size={26} />
+          <span>余额</span>
+          <strong>{money(profile.balance)}</strong>
+        </div>
+      </div>
+
+      {notice ? (
+        <div className="profile-notice">
+          <WandSparkles size={20} />
+          <span>{notice}</span>
+        </div>
+      ) : null}
+
+      <div className="profile-grid">
+        <article className="settings-card">
+          <div className="settings-title">
+            <UserRound size={22} />
+            <div>
+              <h3>{profile.isRegistered ? '用户信息' : '注册入口'}</h3>
+              <p>名字可以认真，也可以让系统替钱包阴阳怪气一下。</p>
+            </div>
+          </div>
+          <label className="profile-input">
+            自定义用户名
+            <input value={draftName} onChange={(event) => setDraftName(event.target.value)} placeholder="例如：今晚不点也很完整" />
+          </label>
+          <div className="suggested-names">
+            {suggestedUsernames.map((name) => (
+              <button
+                key={name}
+                className={selectedName === name ? 'selected' : ''}
+                onClick={() => {
+                  setSelectedName(name);
+                  setDraftName('');
+                }}
+              >
+                {name}
+              </button>
+            ))}
+          </div>
+          {!profile.isRegistered ? (
+            <>
+              <AmountPicker selectedAmount={selectedAmount} setSelectedAmount={setSelectedAmount} />
+              <button className="primary-button" onClick={register} data-testid="register-profile">
+                <CircleDollarSign size={19} /> 注册并存入 {money(selectedAmount)}
+              </button>
+            </>
+          ) : (
+            <div className="registered-copy">
+              <strong>{displayName}</strong>
+              <span>这名字看起来很会把夜宵冲动拦在门外。</span>
+            </div>
+          )}
+        </article>
+
+        <article className="settings-card">
+          <div className="settings-title">
+            <WalletCards size={22} />
+            <div>
+              <h3>储值充值</h3>
+              <p>余额不足时，先给情绪预算充点彩色空气。</p>
+            </div>
+          </div>
+          <div className="recharge-grid">
+            {rechargeAmounts.map((amount) => (
+              <button key={amount} onClick={() => recharge(amount)} disabled={!profile.isRegistered}>
+                +{money(amount)}
+              </button>
+            ))}
+          </div>
+        </article>
+
+        <article className="settings-card theme-card">
+          <div className="settings-title">
+            <Palette size={22} />
+            <div>
+              <h3>多巴胺配色</h3>
+              <p>背景色、图标色、字体颜色都可以单独选择。</p>
+            </div>
+          </div>
+          <ThemePicker title="背景色" value={profile.backgroundColor} part="backgroundColor" onChange={onThemeChange} />
+          <ThemePicker title="图标色" value={profile.iconColor} part="iconColor" onChange={onThemeChange} />
+          <ThemePicker title="字体颜色" value={profile.fontColor} part="fontColor" onChange={onThemeChange} />
+        </article>
+      </div>
+    </section>
+  );
+}
+
+function AmountPicker({ selectedAmount, setSelectedAmount }: { selectedAmount: number; setSelectedAmount: (amount: number) => void }) {
+  return (
+    <div className="amount-picker">
+      <span>选择预存储值</span>
+      <div>
+        {rechargeAmounts.map((amount) => (
+          <button key={amount} className={selectedAmount === amount ? 'selected' : ''} onClick={() => setSelectedAmount(amount)}>
+            {money(amount)}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ThemePicker({ title, value, part, onChange }: {
+  title: string;
+  value: DopamineColorId;
+  part: 'backgroundColor' | 'iconColor' | 'fontColor';
+  onChange: (part: 'backgroundColor' | 'iconColor' | 'fontColor', color: DopamineColorId) => void;
+}) {
+  return (
+    <div className="theme-picker">
+      <span>{title}</span>
+      <div className="swatch-row">
+        {dopaminePalettes.map((palette) => (
+          <button
+            key={palette.id}
+            className={value === palette.id ? 'selected' : ''}
+            onClick={() => onChange(part, palette.id)}
+            aria-label={`${title} ${palette.label}`}
+          >
+            <span style={{ background: palette.color }} />
+            {palette.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}

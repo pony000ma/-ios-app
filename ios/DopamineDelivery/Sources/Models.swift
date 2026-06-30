@@ -176,3 +176,38 @@ struct ReflectionSummary: Codable, Identifiable, Hashable {
   let copy: String
 }
 
+enum DopamineColorChoice: String, Codable, CaseIterable, Identifiable, Hashable {
+  case pink
+  case green
+  case purple
+  case orange
+
+  var id: String { rawValue }
+
+  var title: String {
+    switch self {
+    case .pink: "多巴胺粉"
+    case .green: "多巴胺绿"
+    case .purple: "多巴胺紫"
+    case .orange: "多巴胺橙"
+    }
+  }
+}
+
+struct UserProfile: Codable, Hashable {
+  var isRegistered: Bool
+  var username: String
+  var balance: Double
+  var backgroundColor: DopamineColorChoice
+  var iconColor: DopamineColorChoice
+  var fontColor: DopamineColorChoice
+
+  static let empty = UserProfile(
+    isRegistered: false,
+    username: "",
+    balance: 0,
+    backgroundColor: .pink,
+    iconColor: .green,
+    fontColor: .purple
+  )
+}

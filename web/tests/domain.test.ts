@@ -2,9 +2,13 @@ import { describe, expect, it } from 'vitest';
 import {
   addToCart,
   calculateCartTotals,
+  chargeProfile,
   createSimulatedOrder,
   data,
+  defaultUserProfile,
   decrementCart,
+  rechargeProfile,
+  registerProfile,
   isCompletionStatus,
   statusForElapsed,
   validateFixture,
@@ -64,5 +68,24 @@ describe('order state machine', () => {
 
     expect(order.address.label).toBe(data.addresses[0].label);
     expect(JSON.stringify(order)).not.toMatch(/payment|pay|card|paid/i);
+  });
+});
+
+describe('user profile wallet', () => {
+  it('registers with stored value, recharges, and blocks insufficient charges', () => {
+    const registered = registerProfile(defaultUserProfile(), '钱包守夜人', 66);
+    expect(registered.isRegistered).toBe(true);
+    expect(registered.username).toBe('钱包守夜人');
+    expect(registered.balance).toBe(66);
+
+    const charged = chargeProfile(registered, 42);
+    expect(charged.ok).toBe(true);
+    expect(charged.profile.balance).toBe(24);
+
+    const blocked = chargeProfile(charged.profile, 99);
+    expect(blocked.ok).toBe(false);
+    expect(blocked.profile.balance).toBe(24);
+
+    expect(rechargeProfile(blocked.profile, 128).balance).toBe(152);
   });
 });

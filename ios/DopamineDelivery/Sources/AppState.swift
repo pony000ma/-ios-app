@@ -1,6 +1,12 @@
 import Foundation
 import Observation
 
+enum BeginExpectationResult: Equatable {
+  case started
+  case needsRegistration
+  case needsRecharge(required: Double, balance: Double)
+}
+
 @MainActor
 @Observable
 final class AppState {
@@ -10,6 +16,7 @@ final class AppState {
     var activeOrder: SimulatedOrder?
     var latestReflection: ReflectionSummary?
     var selectedAddressId: String
+    var profile: UserProfile?
   }
 
   let fixture: FixtureData
@@ -18,9 +25,12 @@ final class AppState {
   var activeOrder: SimulatedOrder?
   var latestReflection: ReflectionSummary?
   var selectedAddressId: String
+  var profile: UserProfile = .empty
 
   private let storageKey = "DopamineDelivery.state"
   let reflectionUnlockSeconds = 90
+  let suggestedUsernames = ["钱包守夜人", "奶茶撤退冠军", "炸鸡冷静观察员", "深夜下单刹车片", "余额保卫处处长"]
+  let rechargeAmounts: [Double] = [66, 128, 288, 520]
 
   init(fixture: FixtureData = .load()) {
     self.fixture = fixture
@@ -93,9 +103,15 @@ final class AppState {
     persist()
   }
 
-  func beginExpectation() {
-    guard !cart.isEmpty else { return }
+  func beginExpectation() -> BeginExpectationResult {
+    guard !cart.isEmpty else { return .needsRegistration }
+    guard profile.isRegistered else { return .needsRegistration }
+    guard profile.balance >= cartTotals.total else {
+      return .needsRecharge(required: cartTotals.total, balance: profile.balance)
+    }
+
     latestReflection = nil
+    profile.balance = max(0, profile.balance - cartTotals.total)
     activeOrder = SimulatedOrder(
       id: UUID().uuidString,
       createdAt: Date(),
@@ -104,6 +120,7 @@ final class AppState {
       totals: cartTotals
     )
     persist()
+    return .started
   }
 
   func finishExpectation() {
@@ -130,6 +147,32 @@ final class AppState {
 
   func clearLatestReflection() {
     latestReflection = nil
+    persist()
+  }
+
+  func registerUser(name: String, initialAmount: Double) {
+    let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+    profile.isRegistered = true
+    profile.username = cleanName.isEmpty ? suggestedUsernames[0] : cleanName
+    profile.balance = max(0, profile.balance + initialAmount)
+    persist()
+  }
+
+  func recharge(amount: Double) {
+    guard profile.isRegistered else { return }
+    profile.balance = max(0, profile.balance + amount)
+    persist()
+  }
+
+  func setTheme(_ part: ProfileThemePart, to choice: DopamineColorChoice) {
+    switch part {
+    case .background:
+      profile.backgroundColor = choice
+    case .icon:
+      profile.iconColor = choice
+    case .font:
+      profile.fontColor = choice
+    }
     persist()
   }
 
@@ -166,6 +209,7 @@ final class AppState {
     history = persisted.history
     activeOrder = persisted.activeOrder
     latestReflection = persisted.latestReflection
+    profile = persisted.profile ?? .empty
     if fixture.addresses.contains(where: { $0.id == persisted.selectedAddressId }) {
       selectedAddressId = persisted.selectedAddressId
     }
@@ -177,13 +221,20 @@ final class AppState {
       history: history,
       activeOrder: activeOrder,
       latestReflection: latestReflection,
-      selectedAddressId: selectedAddressId
+      selectedAddressId: selectedAddressId,
+      profile: profile
     )
 
     if let data = try? JSONEncoder().encode(payload) {
       UserDefaults.standard.set(data, forKey: storageKey)
     }
   }
+}
+
+enum ProfileThemePart {
+  case background
+  case icon
+  case font
 }
 
 func money(_ value: Double) -> String {

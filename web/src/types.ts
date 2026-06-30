@@ -105,3 +105,21 @@ export interface ReflectionSummary {
   copy: string;
 }
 
+export type DopamineColorId = 'pink' | 'green' | 'purple' | 'orange';
+
+export interface UserProfile {
+  isRegistered: boolean;
+  username: string;
+  balance: number;
+  backgroundColor: DopamineColorId;
+  iconColor: DopamineColorId;
+  fontColor: DopamineColorId;
+}
+
+export interface DopaminePalette {
+  id: DopamineColorId;
+  label: string;
+  color: string;
+  soft: string;
+  contrast: string;
+}
