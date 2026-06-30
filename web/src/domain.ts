@@ -36,6 +36,8 @@ export const dopaminePalettes: DopaminePalette[] = [
   { id: 'green', label: '多巴胺绿', color: '#35d06f', soft: '#edfff3', contrast: '#0f4a27' },
   { id: 'purple', label: '多巴胺紫', color: '#9b5cff', soft: '#f6f0ff', contrast: '#321266' },
   { id: 'orange', label: '多巴胺橙', color: '#ff8a2a', soft: '#fff3e8', contrast: '#66310a' },
+  { id: 'blue', label: '多巴胺蓝', color: '#2f8cff', soft: '#edf6ff', contrast: '#103866' },
+  { id: 'yellow', label: '多巴胺黄', color: '#ffd43b', soft: '#fff9db', contrast: '#5c4700' },
 ];
 
 export function paletteFor(id: DopamineColorId): DopaminePalette {

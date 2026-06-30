@@ -181,6 +181,8 @@ enum DopamineColorChoice: String, Codable, CaseIterable, Identifiable, Hashable 
   case green
   case purple
   case orange
+  case blue
+  case yellow
 
   var id: String { rawValue }
 
@@ -190,6 +192,8 @@ enum DopamineColorChoice: String, Codable, CaseIterable, Identifiable, Hashable 
     case .green: "多巴胺绿"
     case .purple: "多巴胺紫"
     case .orange: "多巴胺橙"
+    case .blue: "多巴胺蓝"
+    case .yellow: "多巴胺黄"
     }
   }
 }

@@ -7,6 +7,7 @@ import {
   data,
   defaultUserProfile,
   decrementCart,
+  dopaminePalettes,
   rechargeProfile,
   registerProfile,
   isCompletionStatus,
@@ -20,13 +21,35 @@ describe('fixture content', () => {
     expect(data.statusEvents.map((event) => event.status)).not.toContain('delivered');
   });
 
-  it('keeps every category with multiple restaurant choices', () => {
+  it('keeps every category with at least three restaurant choices', () => {
     const byCategory = data.restaurants.reduce<Record<string, number>>((acc, restaurant) => {
       acc[restaurant.category] = (acc[restaurant.category] ?? 0) + 1;
       return acc;
     }, {});
 
-    expect(Object.entries(byCategory).filter(([, count]) => count < 2)).toEqual([]);
+    expect(Object.entries(byCategory).filter(([, count]) => count < 3)).toEqual([]);
+  });
+
+  it('keeps every restaurant menu dense enough to feel browsable', () => {
+    const thinMenus = data.restaurants
+      .map((restaurant) => ({
+        name: restaurant.name,
+        count: restaurant.menuSections.reduce((total, section) => total + section.items.length, 0),
+      }))
+      .filter((restaurant) => restaurant.count < 5);
+
+    expect(thinMenus).toEqual([]);
+  });
+
+  it('includes dopamine blue and yellow theme choices', () => {
+    expect(dopaminePalettes.map((palette) => palette.id)).toEqual([
+      'pink',
+      'green',
+      'purple',
+      'orange',
+      'blue',
+      'yellow',
+    ]);
   });
 });
 

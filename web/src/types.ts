@@ -105,7 +105,7 @@ export interface ReflectionSummary {
   copy: string;
 }
 
-export type DopamineColorId = 'pink' | 'green' | 'purple' | 'orange';
+export type DopamineColorId = 'pink' | 'green' | 'purple' | 'orange' | 'blue' | 'yellow';
 
 export interface UserProfile {
   isRegistered: boolean;
