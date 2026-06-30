@@ -180,7 +180,7 @@ private struct CartLineRow: View {
 
   var body: some View {
     HStack(spacing: 12) {
-      RemoteFoodImage(url: line.item.imageUrl, height: 84)
+      LocalFoodImage(imageName: line.item.imageName, height: 84)
         .frame(width: 84)
         .clipShape(RoundedRectangle(cornerRadius: 8))
       VStack(alignment: .leading, spacing: 5) {

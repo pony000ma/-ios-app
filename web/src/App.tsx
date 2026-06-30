@@ -69,6 +69,10 @@ function money(value: number) {
   return `¥${value.toFixed(value % 1 === 0 ? 0 : 1)}`;
 }
 
+function foodImageSrc(imageName: string) {
+  return `/food-images/${imageName}.jpg`;
+}
+
 export function App() {
   const [page, setPage] = useState<Page>('home');
   const [query, setQuery] = useState('');
@@ -310,7 +314,7 @@ function HomeFeed({ query, setQuery, category, setCategory, categories, restaura
       <div className="restaurant-list">
         {restaurants.map((restaurant) => (
           <button key={restaurant.id} className="restaurant-card" onClick={() => onOpen(restaurant)} data-testid={`restaurant-${restaurant.id}`}>
-            <img src={restaurant.imageUrl} alt="" />
+            <img src={foodImageSrc(restaurant.imageName)} alt="" />
             <div className="restaurant-copy">
               <div className="row-between">
                 <h2>{restaurant.name}</h2>
@@ -342,7 +346,7 @@ function RestaurantDetail({ restaurant, cart, onBack, onAdd }: {
         <ChevronLeft size={18} /> 返回餐厅
       </button>
       <div className="detail-hero">
-        <img src={restaurant.imageUrl} alt="" />
+        <img src={foodImageSrc(restaurant.imageName)} alt="" />
         <div>
           <p className="eyebrow">{restaurant.category} · {restaurant.distanceKm} km</p>
           <h2>{restaurant.name}</h2>
@@ -362,7 +366,7 @@ function RestaurantDetail({ restaurant, cart, onBack, onAdd }: {
               const quantity = cart.find((cartItem) => cartItem.restaurantId === restaurant.id && cartItem.menuItemId === item.id)?.quantity ?? 0;
               return (
                 <article key={item.id} className="menu-card">
-                  <img src={item.imageUrl} alt="" />
+                  <img src={foodImageSrc(item.imageName)} alt="" />
                   <div>
                     <div className="row-between">
                       <h4>{item.name}</h4>
@@ -420,7 +424,7 @@ function CartPage({ lines, totals, cart, profile, walletNotice, address, setAddr
           <div className="cart-lines">
             {lines.map((line) => (
               <article key={`${line.restaurantId}-${line.menuItemId}`} className="cart-line">
-                <img src={line.item.imageUrl} alt="" />
+                <img src={foodImageSrc(line.item.imageName)} alt="" />
                 <div>
                   <p className="eyebrow">{line.restaurant.name}</p>
                   <h3>{line.item.name}</h3>

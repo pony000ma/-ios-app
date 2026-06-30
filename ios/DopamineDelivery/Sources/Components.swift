@@ -24,39 +24,17 @@ extension DopamineColorChoice {
   }
 }
 
-struct RemoteFoodImage: View {
-  let url: URL
+struct LocalFoodImage: View {
+  let imageName: String
   var height: CGFloat
 
   var body: some View {
-    AsyncImage(url: url) { phase in
-      switch phase {
-      case .success(let image):
-        image
-          .resizable()
-          .scaledToFill()
-      case .failure:
-        placeholder
-      case .empty:
-        placeholder
-          .redacted(reason: .placeholder)
-      @unknown default:
-        placeholder
-      }
-    }
-    .frame(height: height)
-    .clipped()
-    .accessibilityHidden(true)
-  }
-
-  private var placeholder: some View {
-    Rectangle()
-      .fill(Color.orange.opacity(0.18))
-      .overlay {
-        Image(systemName: "fork.knife")
-          .font(.title2)
-          .foregroundStyle(.orange)
-      }
+    Image(imageName)
+      .resizable()
+      .scaledToFill()
+      .frame(height: height)
+      .clipped()
+      .accessibilityHidden(true)
   }
 }
 

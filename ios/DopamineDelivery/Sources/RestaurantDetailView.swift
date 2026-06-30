@@ -7,7 +7,7 @@ struct RestaurantDetailView: View {
   var body: some View {
     ScrollView {
       LazyVStack(alignment: .leading, spacing: 18) {
-        RemoteFoodImage(url: restaurant.imageUrl, height: 260)
+        LocalFoodImage(imageName: restaurant.imageName, height: 260)
           .clipShape(RoundedRectangle(cornerRadius: 8))
         VStack(alignment: .leading, spacing: 8) {
           Text(restaurant.category)
@@ -54,7 +54,7 @@ private struct MenuItemRow: View {
 
   var body: some View {
     HStack(alignment: .top, spacing: 12) {
-      RemoteFoodImage(url: item.imageUrl, height: 104)
+      LocalFoodImage(imageName: item.imageName, height: 104)
         .frame(width: 112)
         .clipShape(RoundedRectangle(cornerRadius: 8))
       VStack(alignment: .leading, spacing: 8) {
@@ -100,4 +100,3 @@ private struct MenuItemRow: View {
   }
   .environment(AppState(fixture: .preview))
 }
-

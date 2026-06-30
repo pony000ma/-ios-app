@@ -31,7 +31,7 @@ struct FixtureData: Codable {
         minimumOrder: 20,
         etaMinutes: 28,
         tags: ["深夜热卖", "永远快到"],
-        imageUrl: URL(string: "https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=1200&q=80")!,
+        imageName: "food-1562967916-eb82221dfb92",
         menuSections: [
           MenuSection(
             id: "fried",
@@ -44,7 +44,7 @@ struct FixtureData: Codable {
                 price: 42,
                 calories: 980,
                 heat: 98,
-                imageUrl: URL(string: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=900&q=80")!,
+                imageName: "food-1626645738196-c2a7c87a8f58",
                 tags: ["爆汁", "罪恶感友好"]
               )
             ]
@@ -76,7 +76,7 @@ struct Restaurant: Codable, Identifiable, Hashable {
   let minimumOrder: Double
   let etaMinutes: Int
   let tags: [String]
-  let imageUrl: URL
+  let imageName: String
   let menuSections: [MenuSection]
 
   var allItems: [MenuItem] {
@@ -97,7 +97,7 @@ struct MenuItem: Codable, Identifiable, Hashable {
   let price: Double
   let calories: Int
   let heat: Int
-  let imageUrl: URL
+  let imageName: String
   let tags: [String]
 }
 

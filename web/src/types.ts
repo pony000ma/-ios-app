@@ -14,7 +14,7 @@ export interface MenuItem {
   price: number;
   calories: number;
   heat: number;
-  imageUrl: string;
+  imageName: string;
   tags: string[];
 }
 
@@ -34,7 +34,7 @@ export interface Restaurant {
   minimumOrder: number;
   etaMinutes: number;
   tags: string[];
-  imageUrl: string;
+  imageName: string;
   menuSections: MenuSection[];
 }
 

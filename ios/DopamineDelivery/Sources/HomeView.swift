@@ -148,7 +148,7 @@ struct RestaurantRow: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
-      RemoteFoodImage(url: restaurant.imageUrl, height: 184)
+      LocalFoodImage(imageName: restaurant.imageName, height: 184)
       VStack(alignment: .leading, spacing: 10) {
         HStack(alignment: .firstTextBaseline) {
           Text(restaurant.name)

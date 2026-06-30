@@ -219,10 +219,10 @@ export function validateFixture(input: FixtureData): string[] {
   ];
 
   for (const restaurant of input.restaurants) {
-    if (!restaurant.id || !restaurant.name || !restaurant.imageUrl) issues.push(`restaurant:${restaurant.id}:missing-core`);
+    if (!restaurant.id || !restaurant.name || !restaurant.imageName) issues.push(`restaurant:${restaurant.id}:missing-core`);
     if (!restaurant.menuSections.length) issues.push(`restaurant:${restaurant.id}:missing-menu`);
     for (const item of allMenuItems(restaurant)) {
-      if (!item.id || !item.name || !item.imageUrl || item.price <= 0) issues.push(`item:${item.id}:invalid`);
+      if (!item.id || !item.name || !item.imageName || item.price <= 0) issues.push(`item:${item.id}:invalid`);
     }
   }
 

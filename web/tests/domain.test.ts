@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   addToCart,
@@ -19,6 +21,38 @@ describe('fixture content', () => {
   it('has complete shared content and no completion status', () => {
     expect(validateFixture(data)).toEqual([]);
     expect(data.statusEvents.map((event) => event.status)).not.toContain('delivered');
+    expect(JSON.stringify(data)).not.toContain('imageUrl');
+  });
+
+  it('resolves every shared image name to local web and iOS assets', () => {
+    const repoRoot = path.resolve(process.cwd(), '..');
+    const imageNames = new Set<string>();
+
+    for (const restaurant of data.restaurants) {
+      imageNames.add(restaurant.imageName);
+      for (const section of restaurant.menuSections) {
+        for (const item of section.items) imageNames.add(item.imageName);
+      }
+    }
+
+    const missingWebImages = [...imageNames].filter(
+      (imageName) => !existsSync(path.join(repoRoot, 'web/public/food-images', `${imageName}.jpg`)),
+    );
+    const missingIOSImages = [...imageNames].filter((imageName) => {
+      const imageSetPath = path.join(
+        repoRoot,
+        'ios/DopamineDelivery/Resources/Assets.xcassets',
+        `${imageName}.imageset`,
+      );
+      return (
+        !existsSync(path.join(imageSetPath, `${imageName}.jpg`)) ||
+        !existsSync(path.join(imageSetPath, 'Contents.json'))
+      );
+    });
+
+    expect(imageNames.size).toBeGreaterThan(40);
+    expect(missingWebImages).toEqual([]);
+    expect(missingIOSImages).toEqual([]);
   });
 
   it('keeps every category with at least three restaurant choices', () => {
