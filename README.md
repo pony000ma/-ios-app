@@ -29,3 +29,6 @@ npm run test:e2e
 xcodebuild -project ios/DopamineDelivery.xcodeproj -scheme DopamineDelivery -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO
 ```
 
+## App Store / TestFlight
+
+iOS App 已按“完全本机外卖模拟”准备：不接真实商家、不接支付、不请求真实地址、不发起网络请求；图片、菜单、订单状态和模拟逻辑都在本机。上架准备说明见 `docs/app-store-prep.md`。

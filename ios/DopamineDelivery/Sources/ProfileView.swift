@@ -21,6 +21,7 @@ struct ProfileView: View {
         registrationCard
         rechargeCard
         themeCard
+        localModeCard
       }
       .padding()
     }
@@ -171,6 +172,19 @@ struct ProfileView: View {
     .background(.background, in: RoundedRectangle(cornerRadius: 8))
     .overlay(RoundedRectangle(cornerRadius: 8).stroke(.brown.opacity(0.14)))
   }
+
+  private var localModeCard: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      Label("本机模拟模式", systemImage: "lock.shield.fill")
+        .font(.headline)
+      PrivacyLine(icon: "wifi.slash", title: "不联网", detail: "餐厅、菜品、图片、订单状态都随 App 打包在本机。")
+      PrivacyLine(icon: "creditcard.trianglebadge.exclamationmark", title: "不收款", detail: "充值、余额和下单都是情绪预算模拟，不连接真实支付。")
+      PrivacyLine(icon: "location.slash", title: "不收地址", detail: "地址只使用虚拟昵称，不请求定位，也不保存真实收货信息。")
+    }
+    .padding(16)
+    .background(appState.profile.backgroundColor.softColor, in: RoundedRectangle(cornerRadius: 8))
+    .overlay(RoundedRectangle(cornerRadius: 8).stroke(appState.profile.iconColor.color.opacity(0.18)))
+  }
 }
 
 private struct ThemeChoiceRow: View {
@@ -203,6 +217,27 @@ private struct ThemeChoiceRow: View {
           .tint(selected == choice ? choice.color : .gray.opacity(0.22))
           .foregroundStyle(selected == choice ? .white : appState.profile.fontColor.color)
         }
+      }
+    }
+  }
+}
+
+private struct PrivacyLine: View {
+  let icon: String
+  let title: String
+  let detail: String
+
+  var body: some View {
+    HStack(alignment: .top, spacing: 10) {
+      Image(systemName: icon)
+        .font(.headline)
+        .frame(width: 24)
+      VStack(alignment: .leading, spacing: 3) {
+        Text(title)
+          .font(.subheadline.weight(.bold))
+        Text(detail)
+          .font(.footnote)
+          .foregroundStyle(.secondary)
       }
     }
   }
